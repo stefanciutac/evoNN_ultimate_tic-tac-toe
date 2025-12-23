@@ -1,0 +1,26 @@
+//
+// Created by stefanc on 23/12/2025.
+//
+
+#ifndef ULTIMATE_TTT_BOT_V1_NN_H
+#define ULTIMATE_TTT_BOT_V1_NN_H
+
+#include <Eigen/Dense>
+
+#include "Genome.h"
+
+namespace N
+{
+    class NN
+    {
+    public:
+        NN(G::Genome g);
+        void set_genome(G::Genome genome);
+        Eigen::MatrixXd forward_propagate(Eigen::MatrixXd inputs);
+    private:
+        G::Genome parameters;
+        Eigen::MatrixXd relu_activation(Eigen::MatrixXd layer);
+    };
+} // NN
+
+#endif //ULTIMATE_TTT_BOT_V1_NN_H
