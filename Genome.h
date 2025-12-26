@@ -13,11 +13,11 @@ namespace G
     {
     public:
         Genome(std::vector<int> c);
-        void set_genome(G::Genome genome);  // for setting the parameters to their modified values
         Eigen::MatrixXd get_weights(int layer);  // returns the weights
         std::vector<Eigen::MatrixXd> get_weights();
         Eigen::MatrixXd get_biases(int layer);  // returns the biases
         std::vector<Eigen::MatrixXd> get_biases();
+        void mutate(double rate);
     private:
         std::vector<int> configuration{};  // holds the configuration of the nn (layer -> no. of nodes)
         std::vector<Eigen::MatrixXd> weights;  // holds the weights

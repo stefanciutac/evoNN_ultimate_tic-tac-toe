@@ -16,10 +16,12 @@ namespace N
     public:
         NN(G::Genome g);
         void set_genome(G::Genome genome);
-        Eigen::MatrixXd forward_propagate(Eigen::MatrixXd inputs);
+        int choice(Eigen::MatrixXd inputs);
     private:
         G::Genome parameters;
         Eigen::MatrixXd relu_activation(Eigen::MatrixXd layer);
+        Eigen::MatrixXd sigmoid_activation(Eigen::MatrixXd layer);
+        std::vector<double> forward_propagate(Eigen::MatrixXd inputs);
     };
 } // NN
 

@@ -7,4 +7,8 @@ add_executable(ultimate_ttt_bot_v1 main.cpp
         NN.cpp
         NN.h
         Genome.cpp
-        Genome.h)
+        Genome.h
+        Board.cpp
+        Board.h
+        Tournament.cpp
+        Tournament.h)
