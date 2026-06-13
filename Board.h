@@ -22,6 +22,7 @@ namespace B
         bool is_game_drawn();
     private:
         std::vector<int> board{};
+        void random_transform();
     };
 } // B
 

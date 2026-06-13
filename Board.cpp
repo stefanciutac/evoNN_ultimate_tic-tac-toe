@@ -13,6 +13,42 @@ namespace B
         board.resize(9);
     }
 
+    void Board::random_transform()
+    {
+        std::vector<int> new_board;
+        int transform = rand() % 7;
+        if (transform == 0)  // 180-degree rotation
+        {
+            new_board = {board[8], board[7], board[6], board[5], board[4], board[3], board[2], board[1], board[0]};
+        }
+        else if (transform == 1)  // reflection in the vertical axis
+        {
+            new_board = {board[2], board[1], board[0], board[5], board[4], board[3], board[8], board[7], board[6]};
+        }
+        else if (transform == 2)  // reflection in the horizontal axis
+        {
+            new_board = {board[6], board[7], board[8], board[3], board[4], board[5], board[0], board[1], board[2]};
+        }
+        else if (transform == 3)  // rotation by 90 degrees cw
+        {
+            new_board = {board[6], board[3], board[0], board[7], board[4], board[1], board[8], board[5], board[2]};
+        }
+        else if (transform == 4)  // rotation by 270 degrees acw
+        {
+            new_board = {board[2], board[5], board[8], board[1], board[4], board[7], board[0], board[3], board[6]};
+        }
+        else if (transform == 5)  // reflection in diagonal from 6 to 2
+        {
+            new_board = {board[8], board[5], board[2], board[7], board[4], board[1], board[6], board[3], board[0]};
+        }
+        else if (transform == 6)  // reflection in diagonal from 0 to 8
+        {
+            new_board = {board[0], board[3], board[6], board[1], board[4], board[7], board[2], board[5], board[8]};
+        }
+        else new_board = board;
+        board = new_board;
+    }
+
     std::vector<int> Board::get_board()
     {
         return board;
@@ -21,10 +57,14 @@ namespace B
     Eigen::MatrixXd Board::to_nn_input()
     {
         Eigen::MatrixXd input(board.size(), 1);
+
+        random_transform();
+
         for (size_t i = 0; i < board.size(); i++)
         {
-            input(i, 0) = static_cast<int>(board.at(i));
+            input(i, 0) = board.at(i);
         }
+
         return input;
     }
 

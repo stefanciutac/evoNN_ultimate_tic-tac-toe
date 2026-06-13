@@ -21,15 +21,15 @@ int main()
     srand(time(0));  // seeds rand()
 
     // Training parameters
-    std::vector<int> population_config = {200, 200, 200, 200, 200, 200, 200, 200};  // the number of genomes in each segment of the population, MUST BE EVEN for swiss selection
+    std::vector<int> population_config = {50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50};  // the number of genomes in each segment of the population, MUST BE EVEN for swiss selection
     std::vector<double> mutation_rates = {0.001, 0.05, 0.5};
-    std::vector<int> mlp_configuration = {9, 12, 9};  // the structure of the neural network
-    int generations = 100;  // the number of generations of training
+    std::vector<int> mlp_configuration = {9, 20, 20, 20, 9};  // the structure of the neural network
+    int generations = 1000;  // the number of generations of training
 
     // New selection parameters
-    double mutation_coefficient = 0.2;
-    double mutation_index = 3;
-    double elite_success_rate = 0.95;
+    double mutation_coefficient = 1;
+    double mutation_index = 4;
+    double elite_success_rate = 0.85;
 
     // Declare vector that holds population
     std::vector<G::Genome> genomes;
@@ -63,7 +63,7 @@ int main()
         std::cout << "Generation: " << i << std::endl;
 
         // Benchmark
-        if ((i + 1) % 10 == 0 || i == 0)
+        if ((i + 1) % 1000 == 0 || i == 0)
         {
             std::ofstream benchmark_file("benchmark.txt", std::ios::app);
 

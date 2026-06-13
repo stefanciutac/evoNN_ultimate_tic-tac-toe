@@ -316,8 +316,10 @@ namespace T
             genomes.at(rand_2) = temp;
         }
 
+
         // Configuration boilerplate - determines which segment of the population to allocate to each thread
         int number_of_cores = std::max(std::thread::hardware_concurrency(), static_cast<unsigned int>(3));
+
         std::vector<int> config{};
         for (int i = 0; i < number_of_cores; i++) config.push_back(30);
         if (population_config.size() == number_of_cores) config = population_config;
@@ -325,6 +327,7 @@ namespace T
 
         // Run tournament
         std::vector<std::future<std::vector<G::Genome>>> threads;  // vector with std::future to store results
+
 
         for (int i = 0; i < number_of_cores; i++)
         {
@@ -339,8 +342,10 @@ namespace T
         }
         for (std::future<std::vector<G::Genome>>& thread : threads) ranking.push_back(thread.get());  // join threads
 
+
         // Selection
         std::vector<std::vector<G::Genome>> new_groups = tournament_selection(config.size(), ranking, config);
+
 
         // std::cout << "181" << std::endl;
         // Return new generation
