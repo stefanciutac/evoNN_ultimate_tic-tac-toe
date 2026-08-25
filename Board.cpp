@@ -13,13 +13,52 @@ Board::Board()
     board.resize(9);
 }
 
+void Board::random_transform()
+{
+    std::vector<int> new_board;
+    int transform = rand() % 7;
+    if (transform == 0)  // 180-degree rotation
+    {
+        new_board = {board[8], board[7], board[6], board[5], board[4], board[3], board[2], board[1], board[0]};
+    }
+    else if (transform == 1)  // reflection in the vertical axis
+    {
+        new_board = {board[2], board[1], board[0], board[5], board[4], board[3], board[8], board[7], board[6]};
+    }
+    else if (transform == 2)  // reflection in the horizontal axis
+    {
+        new_board = {board[6], board[7], board[8], board[3], board[4], board[5], board[0], board[1], board[2]};
+    }
+    else if (transform == 3)  // rotation by 90 degrees cw
+    {
+        new_board = {board[6], board[3], board[0], board[7], board[4], board[1], board[8], board[5], board[2]};
+    }
+    else if (transform == 4)  // rotation by 270 degrees acw
+    {
+        new_board = {board[2], board[5], board[8], board[1], board[4], board[7], board[0], board[3], board[6]};
+    }
+    else if (transform == 5)  // reflection in diagonal from 6 to 2
+    {
+        new_board = {board[8], board[5], board[2], board[7], board[4], board[1], board[6], board[3], board[0]};
+    }
+    else if (transform == 6)  // reflection in diagonal from 0 to 8
+    {
+        new_board = {board[0], board[3], board[6], board[1], board[4], board[7], board[2], board[5], board[8]};
+    }
+    else new_board = board;
+    board = new_board;
+}
+
 std::vector<int> Board::get_board()
 {
     return board;
 }
 
-Eigen::MatrixXd Board::to_nn_input(const std::vector<int>& input_state)
+Eigen::MatrixXd Board::to_nn_input(std::vector<int> input_state)
 {
+    random_transform();
+    for (int i = 0; i < board.size(); i ++) input_state.at(i) = board.at(i);
+
     Eigen::MatrixXd input(input_state.size(), 1);
     for (size_t i = 0; i < input_state.size(); i++)
     {

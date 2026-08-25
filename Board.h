@@ -14,7 +14,7 @@ class Board
 public:
     Board();
     std::vector<int> get_board();
-    Eigen::MatrixXd to_nn_input(const std::vector<int>& input_state);
+    Eigen::MatrixXd to_nn_input(std::vector<int> input_state);
     void make_move(int square, int player);
     void render();
     bool is_empty(int square);
@@ -25,6 +25,7 @@ public:
     int play_random_mover(const Genome& genome);
 private:
     std::vector<int> board{};
+    void random_transform();
 };
 
 #endif //ULTIMATE_TTT_BOT_V1_BOARD_H

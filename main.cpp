@@ -27,7 +27,7 @@ int main()
     DiffEvolution population = DiffEvolution(125, 8, {10, 20, 9});
 
     // Main training loop
-    int generations = 50 ;
+    int generations = 50;
 
     std::ofstream benchmark_file("benchmark.txt");
     benchmark_file << "Generation,Max Performance Rating,Min Performance Rating,Max Agent Rating Index,Min Agent Rating Index,Non-Terminating Games" << std::endl;
