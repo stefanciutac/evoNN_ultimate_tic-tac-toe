@@ -1,3 +1,2 @@
 Generation,Average Agent Fitness,Average Agent Fitness Standard Deviation,Elite Agent Average Fitness,Average Agent Fitness Standard Deviation,Population Fitness Standard Deviation
-0,0.470084,0.125974,0.455542,0.120944,0.125117
-999,0.742495,0.0586901,0.742198,0.0583842,0.0585999
+0,0.456476,0.128818,0.465539,0.144248,0.131771
